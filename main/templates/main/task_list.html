@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+{% block head_title %}{{block.super}} - Tasks to do{% endblock %}
+{% block content %}
+{{block.super}}
+<div class="container-fluid">
+	<h2>Tasks to do: </h2>
+	{% include 'main/snippets/task_list_snippet.html' with tasks=tasks %}
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6 col-sm-12 h3">
+			<p>Title</p>
+		</div>
+		<div class="col-md-3  col-sm-12 h3">
+			<p>Deadline</p>
+		</div>
+	</div>
+	{% for task in tasks %}
+		<div class="row" id="task_{{task.id}}">
+			<div class="col-md-5 col-sm-12 h4">
+				<a href="{{task.get_absolute_url}}">{{task.title}}</a>
+			</div>
+			<div class="col-md-4  col-sm-12">{{task.do_before}} (<b>{{task.do_before|timeuntil}}</b> left)</div>
+			{% if task.done %}
+			<div class="col-md-1  col-sm-4">
+				<button class="btn btn-block btn-success">
+					<a href="{{ task.get_undo_url }}">Undone</a>
+				</button>
+			</div>
+			{% else %}
+			<div class="col-md-1  col-sm-4">
+				<button class="btn btn-block btn-success">
+					<a href="{{ task.get_do_url }}">Done</a>
+			</button>
+			</div>
+			{% endif %}
+			<div class="col-md-1  col-sm-4">
+				<button class="btn btn-block btn-info">
+					<a href="{{ task.get_update_url }}">Update</a>
+				</button>
+			</div>
+			<div class="col-md-1  col-sm-4">
+				<button class="btn btn-block btn-danger">
+					<a href="{{ task.get_delete_url }}">Delete</a>
+				</button>
+			</div>
+		</div>
+	{% empty %}
+		<div class="row">
+			<div class="text-warning">No tasks here yet.</div>
+		</div>
+	{% endfor %}
+</div>

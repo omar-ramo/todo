@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+{% block head_title %}{{block.super}} - Update a task{% endblock %}
+{% block content %}
+{{block.super}}
+<div class="row">
+	<h2>Update a task: </h2>
+	<form action="{% url 'main:task_update' form.instance.slug %}" method="post">
+		{% csrf_token %}
+		{{form.non_field_errors}}
+		{{ form|crispy }}
+		<button type="submit" class="btn btn-block btn-info">Update</button>
+	</form>
+</div>
+{% endblock %}

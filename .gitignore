@@ -1,0 +1,9 @@
+db.sqlite3
+media/*
+static_root/*
+**__pycache__/
+**.pyc
+.env
+Procfile.windows
+todo.sublime-project
+todo.sublime-workspace

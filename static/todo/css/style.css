@@ -1,0 +1,10 @@
+/* Stylesheet for todo app */
+
+#task {
+    margin: 4px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #999999;
+}
+dd {
+    margin-left: 35px;
+}

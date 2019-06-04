@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+{% block head_title %}{{block.super}} - {{task.title}}{% endblock %}
+{% block content %}
+{{block.super}}
+<div class="row">
+	<h2> {{task.title}}: </h2>
+</div>
+<div class="row">
+	{% if task.done %}
+	<div class="col-md-1  col-sm-4">
+		<button class="btn btn-block btn-success">
+			<a href="{{ task.get_undo_url }}">Undone</a>
+		</button>
+	</div>
+	{% else %}
+	<div class="col-md-1  col-sm-4">
+		<button class="btn btn-block btn-success">
+			<a href="{{ task.get_do_url }}">Done</a>
+	</button>
+	</div>
+	{% endif %}
+	<div class="col-md-1  col-sm-4">
+		<button class="btn btn-block btn-info">
+			<a href="{{ task.get_update_url }}">Update</a>
+		</button>
+	</div>
+	<div class="col-md-1  col-sm-4">
+		<button class="btn btn-block btn-danger">
+			<a href="{{ task.get_delete_url }}">Delete</a>
+		</button>
+	</div>
+</div>
+<div class="row">
+	<p>{{task.description|linebreaks}}</p>
+	<dl>
+		<dt>Created :</dt>
+		<dd>{{task.created_on}}</dd>
+		<dt>Last update:</dt>
+		<dd>{{task.updated_on}}</dd>
+	</dl>
+	{% if task.done %}
+	<p class="text-success">This task is done, the <b>{{task.finished_on}}</b></p>
+	{% else %}
+	<p class="text-info">This task must be finished by <b>{{task.do_before}}</b></p>
+	{% endif %}
+</div>
+{% endblock %}
