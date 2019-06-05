@@ -2,7 +2,6 @@
 from django.urls import reverse
 from django.db import models
 from django.utils.text import slugify
-from django.utils import timezone
 from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
@@ -38,7 +37,10 @@ class Task(models.Model):
             except Task.DoesNotExist:
                 next_id = 1
 
-            self.slug = '{}-{}'.format(next_id, slugify(self.title))
+            self.slug = '{}-{}'.format(
+                next_id,
+                slugify(self.title, allow_unicode=True)
+            )
 
         super(Task, self).save(*args, **kwargs)
 
